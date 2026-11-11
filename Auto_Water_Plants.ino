@@ -1,6 +1,4 @@
+#include "scr/scr_all.h"
 
-void setup() {
-}
-
-void loop() {
-}
+void setup() { app_setup(); }
+void loop() { app_loop(); }
