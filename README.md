@@ -8,4 +8,4 @@
 
 1 pump - GPIO 43
 
-1 measure sensor for check water recently capacity
+1 measure sensor for check water recently capacity - GPIO6
