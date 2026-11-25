@@ -5,16 +5,28 @@ static bool     g_on = false;
 static uint32_t g_start = 0;
 
 void pump_begin() {
-  pinMode(PIN_PUMP, OUTPUT);
-  digitalWrite(PIN_PUMP, !PUMP_ACTIVE_LEVEL);
+  pinMode(PIN_L298N_EN, OUTPUT);
+  pinMode(PIN_L298N_IN1, OUTPUT);
+  pinMode(PIN_L298N_IN2, OUTPUT);
+  digitalWrite(PIN_L298N_EN, LOW);
+  digitalWrite(PIN_L298N_IN1, LOW);
+  digitalWrite(PIN_L298N_IN2, LOW);
   g_on = false;
 }
 
 void pump_set(bool on) {
   if (on == g_on) return;
+  if (on) {
+    digitalWrite(PIN_L298N_IN1, HIGH);
+    digitalWrite(PIN_L298N_IN2, LOW);
+    digitalWrite(PIN_L298N_EN, HIGH);
+    g_start = millis();
+  } else {
+    digitalWrite(PIN_L298N_EN, LOW);
+    digitalWrite(PIN_L298N_IN1, LOW);
+    digitalWrite(PIN_L298N_IN2, LOW);
+  }
   g_on = on;
-  if (on) g_start = millis();
-  digitalWrite(PIN_PUMP, on ? PUMP_ACTIVE_LEVEL : !PUMP_ACTIVE_LEVEL);
 }
 
 bool pump_is_on() { return g_on; }

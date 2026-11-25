@@ -36,14 +36,12 @@ void display_update(const SensorData &s, const Control &c, bool pump_on, bool ne
   if (s.soil_ok) oled.printf("%.0f%%", s.soil_pct); else oled.print("LOI");
 
   oled.setCursor(0, 26);
-  oled.print("Nhiet: ");
-  if (s.dht_ok) oled.printf("%.1fC", s.temp); else oled.print("LOI");
+  oled.print("Nhiet: de sau");
 
   oled.setCursor(0, 38);
-  oled.print("KK  : ");
-  if (s.dht_ok) oled.printf("%.0f%%", s.hum); else oled.print("LOI");
+  oled.print("KK  : de sau");
 
   oled.setCursor(0, 50);
-  oled.printf("Bom:%s Nuoc:%s", pump_on ? "ON" : "OFF", s.water_ok ? "OK" : "HET");
+  oled.printf("Bom:%s Nuoc:--", pump_on ? "ON" : "OFF");
   oled.display();
 }

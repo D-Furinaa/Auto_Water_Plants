@@ -2,9 +2,9 @@
 #include "config.h"
 #include <ArduinoJson.h>
 
-static Control *g_ctl = nullptr;
+static Control *g_control_ptr = nullptr;
 
-void cmd_begin(Control *ctl) { g_ctl = ctl; }
+void cmd_begin(Control *ctl) { g_control_ptr = ctl; }
 
 void cmd_subscribe(PubSubClient &mqtt) {
   mqtt.subscribe(TOPIC_PREFIX "cmd/#", 1);
@@ -39,13 +39,13 @@ bool cmd_apply(Control &c, const String &name, const String &payload) {
 }
 
 void cmd_on_message(char *topic, uint8_t *payload, unsigned int len) {
-  if (!g_ctl) return;
+  if (!g_control_ptr) return;
   String t(topic);
   String name = t.substring(strlen(TOPIC_PREFIX "cmd/"));
   String body;
   body.reserve(len);
   for (unsigned int i = 0; i < len; i++) body += (char)payload[i];
   body.trim();
-  bool ok = cmd_apply(*g_ctl, name, body);
+  bool ok = cmd_apply(*g_control_ptr, name, body);
   Serial.printf("[cmd] %s=%s -> %s\n", name.c_str(), body.c_str(), ok ? "ok" : "rejected");
 }

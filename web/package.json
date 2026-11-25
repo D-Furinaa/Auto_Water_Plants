@@ -1,0 +1,20 @@
+{
+  "name": "auto-water-plants-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "MQTT-to-SQLite telemetry dashboard for Auto Water Plants",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "mqtt": "^5.14.1"
+  }
+}

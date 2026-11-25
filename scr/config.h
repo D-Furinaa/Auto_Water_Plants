@@ -9,10 +9,16 @@
 #define PIN_DHT 2         // DHT22
 #define PIN_OLED_SCL 4
 #define PIN_OLED_SDA 5
-#define PIN_PUMP 43 // luu y: GPIO43 la UART0 TX; Makefile dung CDCOnBoot=cdc nen van dung duoc
+#define PIN_L298N_EN 7  // ENA: bat/tat kenh A (thao jumper ENA tren module)
+#define PIN_L298N_IN1 8 // IN1: chieu quay bom
+#define PIN_L298N_IN2 9 // IN2: chieu quay bom
 #define PIN_WATER 6 // cam bien muc nuoc (so): LOW = het nuoc
 
-#define PUMP_ACTIVE_LEVEL HIGH // doi thanh LOW neu relay kich muc thap
+// --- Gia lap cam bien dat de thu he thong ---
+#define SOIL_SIMULATION 1 // doi thanh 0 de doc cam bien dat that
+#define SOIL_SIMULATION_MIN_PCT 20.0f
+#define SOIL_SIMULATION_MAX_PCT 70.0f
+#define SOIL_SIMULATION_PERIOD_MS 120000UL // chu ky 20% -> 70% -> 20%
 
 // --- Hieu chuan do am dat (ADC 12-bit). PHAI do lai tren cam bien thuc te ---
 #define SOIL_ADC_DRY 3200 // gia tri ADC khi de ngoai khong khi (0%)
@@ -26,7 +32,7 @@
 #define PUMP_MAX_RUN_MS 60000UL // bom chay lien tuc toi da
 
 // --- Chu ky ---
-#define SENSOR_PERIOD_MS 2000UL
+#define SENSOR_PERIOD_MS 250UL
 #define TELEMETRY_PERIOD_MS 10000UL
 
 // --- WiFi / MQTT (sua truoc khi nap) ---

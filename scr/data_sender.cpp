@@ -57,8 +57,8 @@ bool publish_telemetry(const SensorData &s, const Control &c, bool pump_on) {
   put_num(buf, sizeof buf, "hum", s.hum, 1);
   size_t len = strlen(buf);
   snprintf(buf + len, sizeof buf - len,
-           "\"water_ok\":%s,\"pump\":%s,\"mode\":\"%s\",\"low\":%.0f,\"high\":%.0f,\"alerts\":%u}",
-           s.water_ok ? "true" : "false", pump_on ? "true" : "false",
+           "\"water_ok\":null,\"pump\":%s,\"mode\":\"%s\",\"low\":%.0f,\"high\":%.0f,\"alerts\":%u}",
+           pump_on ? "true" : "false",
            c.mode == MODE_AUTO ? "auto" : "manual", c.low, c.high, c.active);
   return g_mqtt.publish(TOPIC_PREFIX "telemetry", buf);
 }

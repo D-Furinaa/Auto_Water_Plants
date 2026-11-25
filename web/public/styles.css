@@ -1,0 +1,73 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #17352b;
+  background: #f3f7f3;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(201, 230, 207, .38), transparent 34rem),
+    #f3f7f3;
+}
+
+.page { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 48px 0 28px; }
+.topbar, .section-heading, .chart-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.topbar { margin-bottom: 30px; }
+.eyebrow { margin: 0 0 8px; color: #528469; font-size: .73rem; font-weight: 800; letter-spacing: .13em; }
+h1, h2, p { margin-top: 0; }
+h1 { margin-bottom: 8px; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.055em; }
+h2 { margin-bottom: 0; font-size: 1.25rem; letter-spacing: -.025em; }
+.subtitle, .hint, .footnote { color: #7d9187; }
+.subtitle { margin-bottom: 0; }
+.connection { display: flex; align-items: center; gap: 9px; color: #87988f; font-size: .85rem; font-weight: 650; }
+.connection-dot { width: 9px; height: 9px; border-radius: 50%; background: #d79c45; box-shadow: 0 0 0 4px #f4e8d4; }
+.connection.connected { color: #43835d; }
+.connection.connected .connection-dot { background: #48a66a; box-shadow: 0 0 0 4px #dcefe1; }
+.summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.card { border: 1px solid #e8eee8; border-radius: 18px; background: rgba(255, 255, 255, .92); box-shadow: 0 12px 32px rgba(34, 65, 47, .045); }
+.summary .card { min-height: 180px; padding: 21px; }
+.card-heading { display: flex; align-items: center; justify-content: space-between; color: #70857a; font-size: .82rem; font-weight: 650; }
+.card-icon { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 10px; background: #edf5ef; color: #55916a; font-size: 1.05rem; }
+.reading { display: flex; align-items: baseline; gap: 5px; margin: 18px 0 13px; font-size: 2.5rem; font-weight: 750; letter-spacing: -.06em; }
+.reading small { color: #789084; font-size: 1rem; font-weight: 600; }
+.reading.compact { font-size: 1.6rem; }
+.meter { height: 7px; overflow: hidden; border-radius: 8px; background: #edf2ed; }
+.meter div { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #72bd82, #36895e); transition: width .3s ease; }
+.hint { margin: 12px 0 0; font-size: .76rem; }
+.state { margin: 20px 0 13px; font-size: 1.4rem; font-weight: 750; letter-spacing: -.035em; }
+.state.is-on { color: #338559; }
+.state.is-off { color: #728078; }
+.history-card { margin-top: 18px; padding: 25px 27px 19px; }
+.plant-picker { display: grid; gap: 6px; color: #77887f; font-size: .75rem; font-weight: 650; }
+.plant-picker select { min-width: 130px; padding: 9px 30px 9px 11px; border: 1px solid #e1e9e2; border-radius: 9px; background: white; color: #315343; font: inherit; }
+.chart-wrap { position: relative; min-height: 240px; margin-top: 18px; }
+#soil-chart { width: 100%; height: auto; overflow: visible; }
+.grid-line { stroke: #e9efea; stroke-width: 1; }
+.axis-label { fill: #91a197; font-size: 11px; }
+.soil-line { fill: none; stroke: #55a66d; stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
+.soil-point { fill: #fff; stroke: #41965f; stroke-width: 2; }
+.empty-chart { position: absolute; inset: 44% 0 auto; color: #91a197; text-align: center; font-size: .9rem; }
+.empty-chart[hidden] { display: none; }
+.chart-footer { color: #93a198; font-size: .74rem; }
+.footnote { margin: 20px 0 0; text-align: center; font-size: .75rem; }
+
+@media (max-width: 850px) {
+  .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .page { width: min(100% - 24px, 440px); padding-top: 28px; }
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .summary { gap: 10px; }
+  .summary .card { min-height: 162px; padding: 16px; }
+  .history-card { padding: 20px 15px 16px; }
+  .chart-wrap { min-height: 190px; }
+  .section-heading { align-items: flex-end; }
+  .chart-footer { align-items: flex-start; flex-direction: column; gap: 5px; }
+}

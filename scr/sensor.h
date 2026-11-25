@@ -4,14 +4,16 @@
 struct SensorData {
   float soil_pct = NAN;   // 0..100
   bool  soil_ok  = false; // false = cam bien dat loi
-  float temp     = NAN;   // do C
-  float hum      = NAN;   // % khong khi
-  bool  dht_ok   = false;
-  bool  water_ok = true;  // false = het nuoc
+  float temp     = NAN;   // DHT22 chua duoc doc
+  float hum      = NAN;   // DHT22 chua duoc doc
+  bool  dht_ok   = false; // DHT22 chua duoc doc
+  bool  water_ok = true;  // tam cho phep bom khi chua doc cam bien muc nuoc
 };
 
 void sensor_begin();
 void sensor_read(SensorData &out);
+bool sensor_set_soil_override(float soil_pct);
+void sensor_clear_soil_override();
 
 // Ham thuan, de test tren may: ADC -> %
 float soil_raw_to_pct(int raw);

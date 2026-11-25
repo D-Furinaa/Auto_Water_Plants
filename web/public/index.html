@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Auto Water Plants | Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">ESP32-S3 · L298N</p>
+          <h1>Auto Water Plants</h1>
+          <p class="subtitle">Theo dõi dữ liệu cảm biến và trạng thái tưới</p>
+        </div>
+        <div class="connection" id="connection">
+          <span class="connection-dot"></span>
+          <span id="connection-label">Đang kết nối...</span>
+        </div>
+      </header>
+
+      <section class="summary" aria-label="Dữ liệu mới nhất">
+        <article class="card soil-card">
+          <div class="card-heading"><span>Độ ẩm đất</span><span class="card-icon">◉</span></div>
+          <p class="reading"><span id="soil-value">--</span><small>%</small></p>
+          <div class="meter"><div id="soil-meter"></div></div>
+          <p class="hint" id="soil-time">Chưa có dữ liệu</p>
+        </article>
+        <article class="card">
+          <div class="card-heading"><span>Máy bơm</span><span class="card-icon">↗</span></div>
+          <p class="state" id="pump-state">--</p>
+          <p class="hint" id="pump-mode">Chế độ: --</p>
+        </article>
+        <article class="card">
+          <div class="card-heading"><span>Cảm biến nước</span><span class="card-icon">≈</span></div>
+          <p class="state" id="water-state">--</p>
+          <p class="hint" id="alerts">Cảnh báo: --</p>
+        </article>
+        <article class="card">
+          <div class="card-heading"><span>Nhiệt độ / độ ẩm không khí</span><span class="card-icon">⌁</span></div>
+          <p class="reading compact"><span id="climate-value">--</span></p>
+          <p class="hint">Hiển thị khi thiết bị gửi dữ liệu</p>
+        </article>
+      </section>
+
+      <section class="card history-card">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">LỊCH SỬ</p>
+            <h2>Độ ẩm đất</h2>
+          </div>
+          <label class="plant-picker">Chậu cây
+            <select id="plant-filter" aria-label="Lọc theo chậu cây">
+              <option value="">Tất cả</option>
+              <option value="1">Chậu 1</option>
+            </select>
+          </label>
+        </div>
+        <div class="chart-wrap">
+          <svg id="soil-chart" viewBox="0 0 720 240" role="img" aria-label="Biểu đồ lịch sử độ ẩm đất"></svg>
+          <p class="empty-chart" id="chart-empty">Chưa nhận được dữ liệu telemetry.</p>
+        </div>
+        <div class="chart-footer">
+          <span id="sample-count">0 mẫu gần nhất</span>
+          <span id="last-updated">Chưa cập nhật</span>
+        </div>
+      </section>
+      <p class="footnote">Dữ liệu được lưu trong SQLite trên máy chạy ứng dụng web.</p>
+    </main>
+  </body>
+</html>

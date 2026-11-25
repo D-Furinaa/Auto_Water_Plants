@@ -1,7 +1,9 @@
 PORT = /dev/ttyACM0
 BAUD = 115200
-FQBN = esp32:esp32:esp32s3:FlashSize=16M,PSRam=opi,CDCOnBoot=cdc
+FQBN = esp32:esp32:esp32s3:FlashSize=16M,PSRAM=opi,CDCOnBoot=cdc
 BUILD_DIR = ./build
+
+.PHONY: all compile upload monitor run git-push clean
 
 all: compile
 
@@ -18,7 +20,7 @@ monitor:
 	arduino-cli monitor -p $(PORT) -c baudrate=$(BAUD)
 
 run:
-	compile upload monitor
+	$(MAKE) compile && $(MAKE) upload && $(MAKE) monitor
 
 git-push:
 	@echo "Checkin Git's status..."
